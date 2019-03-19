@@ -4,14 +4,9 @@ export default {
         path: '/',
         component: '../layout',
         routes: [
-            // {
-            //     path: '/',
-            //     component: 'Helloworld',
-            // },
+            { path: 'list', component: './list' },
             { path: 'puzzlecards', component: './puzzlecards' },
-            {
-                path: 'helloworld',
-                component: './HelloWorld'
+            { path: 'helloworld', component: './HelloWorld'
             },
             {
                 path: '/dashboard',
@@ -35,12 +30,10 @@ export default {
     // 本地服务器和远端服务器是「服务器和服务器间的通信」，就不存在跨域问题了
     proxy: {
         '/dev': {
-            // target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
             target: 'http://10.82.13.243:3005',
             changeOrigin: true,
         },
         '/random_joke': {
-            // target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
             target: 'http://10.82.13.243:3005',
             changeOrigin: true,
         },
