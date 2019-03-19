@@ -34,11 +34,26 @@ export default {
     // 从网络拓扑上看本地开发服务器起着「反向代理」的作用。
     // 本地服务器和远端服务器是「服务器和服务器间的通信」，就不存在跨域问题了
     proxy: {
-        '/dev1': {
+        '/dev': {
             // target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
-            // target: 'https://www.baidu.com/',
-            // target: 'http://localhost:3005/random_joke',
-            target: 'http://192.168.0.104:3005/random_ten',
+            target: 'http://10.82.13.243:3005',
+            changeOrigin: true,
+        },
+        '/random_joke': {
+            // target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
+            target: 'http://10.82.13.243:3005',
+            changeOrigin: true,
+        },
+        '/amazonaws': {
+            target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
+            changeOrigin: true,
+        },
+        '/baidu': {
+            target: 'https://www.baidu.com',
+            changeOrigin: true,
+        },
+        '/404': {
+            target: 'https://safe-falls-22549.herokuapp.com',
             changeOrigin: true,
         },
     },

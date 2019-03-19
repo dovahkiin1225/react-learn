@@ -18,7 +18,11 @@ export default {
         *queryInitCards(_, sagaEffects){
             const { call, put} = sagaEffects;
             // const endPointURI = 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke';
-            const endPointURI = '/dev1/random_joke';         // 使用的代理，重定向
+            // const endPointURI = 'http://10.82.13.243:3005/random_joke';      
+            const endPointURI = '/random_joke';         // 使用的代理，重定向
+            // const endPointURI = '/amazonaws/random_joke';         // 使用的代理，重定向
+            // const endPointURI = '/baidu/random_joke';         // 使用的代理，重定向
+            // const endPointURI = '/404/random_joke';         // 使用的代理，重定向
 
             const puzzle = yield call(request, endPointURI);        // 获取服务端数据。
             yield put({ type:'addNewCard', payload: puzzle});       
