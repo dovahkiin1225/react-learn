@@ -1,19 +1,17 @@
 import React from 'react';
-
-import { Table, Modal, Button, Form, Input } from 'antd';
-
 // connect 是连接 dva 和 React 两个平行世界的关键
 import { connect } from 'dva';
+import { Table, Modal, Button, Form, Input } from 'antd';
 import SampleChart from "../../components/SampleChart";
 
 const FormItem = Form.Item;
-const namespace = 'cards';
+// const namespace = 'cards';
 // const namespace = "sampleChart";
 
 function mapStateToProps(state) {
   return {
     cardsList: state.cards.cardsList,
-    cardsLoading: state.loading.effects[`${namespace}/queryList`],
+    cardsLoading: state.loading.effects['cards/queryList'],
     statistic: state.cards.statistic,
   };
 }
@@ -65,7 +63,8 @@ class List extends React.Component {
   };
   componentDidMount() {
     this.props.dispatch({
-      type: `${namespace}/queryList`,
+      // type: `${namespace}/queryList`,
+      type: 'cards/queryList',
     });
   }
 
@@ -138,13 +137,9 @@ class List extends React.Component {
             </FormItem>
           </Form>
         </Modal>
-        {/* <Modal
-          visible={statisticVisible}
-          footer={null}
-          onCancel={this.handleStatisticCancel}
-        >
+        <Modal visible={statisticVisible} footer={null} onCancel={this.handleStatisticCancel}>
           <SampleChart data={statistic[id]} />
-        </Modal> */}
+        </Modal>
       </div>
     );
   }

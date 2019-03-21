@@ -32,6 +32,18 @@ class SampleChart extends React.Component {
     this.chart.interval().position('genre*sold').color('genre');
     this.chart.render();
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data) {
+      this.refreshChart();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  }
   
   render() {
     return (
