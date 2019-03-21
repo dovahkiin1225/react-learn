@@ -7,7 +7,8 @@ const delay = (millisecond) => {
 export default {
   namespace : 'cards',
   state     : {
-    cardsList: [ ]
+    cardsList: [],
+    statistic: {},
   },
   effects: {
     * queryList(_, sagaEffects) {

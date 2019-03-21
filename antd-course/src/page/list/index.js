@@ -4,20 +4,25 @@ import { Table, Modal, Button, Form, Input } from 'antd';
 
 // connect 是连接 dva 和 React 两个平行世界的关键
 import { connect } from 'dva';
+import SampleChart from "../../components/SampleChart";
 
 const FormItem = Form.Item;
 const namespace = 'cards';
+// const namespace = "sampleChart";
 
 function mapStateToProps(state) {
   return {
     cardsList: state.cards.cardsList,
     cardsLoading: state.loading.effects[`${namespace}/queryList`],
+    statistic: state.cards.statistic,
   };
 }
 
 class List extends React.Component {
   state = {
     visible: false,
+    statisticVisible: false,
+    id: null
   };
 
   showModal = () => {
@@ -44,7 +49,20 @@ class List extends React.Component {
       }
     });
   }
-
+  // 图表添加展示逻辑。
+  showStatistic = id => {
+    this.props.dispatch({
+      type: "cards/getStatistic",
+      payload: id
+    });
+    // 更新 state，弹出包含图表的对话框
+    this.setState({ id, statisticVisible: true });
+  };
+  handleStatisticCancel = () => {
+    this.setState({
+      statisticVisible: false
+    });
+  };
   componentDidMount() {
     this.props.dispatch({
       type: `${namespace}/queryList`,
@@ -65,12 +83,27 @@ class List extends React.Component {
       dataIndex: 'url',
       render: value => <a href={value}>{value}</a>,
     },
+    {
+      title: "",
+      dataIndex: "_",
+      render: (_, { id }) => {
+        return (
+          <Button
+            onClick={() => {
+              this.showStatistic(id);
+            }}
+          >
+            图表
+          </Button>
+        );
+      }
+    }
   ];
 
   render() {
-    const { visible } = this.state;
-    const { form: { getFieldDecorator } } = this.props;
-    const { cardsList, cardsLoading } = this.props;
+    debugger
+    const { visible, statisticVisible, id } = this.state;
+    const { cardsList, cardsLoading, form: { getFieldDecorator }, statistic } = this.props;
   
     return (
       <div>
@@ -105,6 +138,13 @@ class List extends React.Component {
             </FormItem>
           </Form>
         </Modal>
+        {/* <Modal
+          visible={statisticVisible}
+          footer={null}
+          onCancel={this.handleStatisticCancel}
+        >
+          <SampleChart data={statistic[id]} />
+        </Modal> */}
       </div>
     );
   }
