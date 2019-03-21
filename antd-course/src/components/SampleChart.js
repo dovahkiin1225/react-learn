@@ -33,12 +33,14 @@ class SampleChart extends React.Component {
     this.chart.render();
   };
 
+  // 监听组件更新事件，更新时重新画图
   componentDidUpdate(prevProps) {
     if (prevProps.data !== this.props.data) {
       this.refreshChart();
     }
   }
 
+  // 如果这个组件不再被使用，那么初始化的图表也应该随着组件一并被销毁
   componentWillUnmount() {
     if (this.chart) {
       this.chart.destroy();
