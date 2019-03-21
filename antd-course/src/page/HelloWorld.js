@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+/* import { Card } from 'antd';
 
 export default () => {
     // return <div>hello world</div>;
@@ -11,7 +11,7 @@ export default () => {
 
     return (
         <Card style={style} actions={[<a>操作一</a>,<a>操作二</a>]}>
-        {/* 在 <Card> 组件内部写入一个子组件 <Card.Meta></Card.Meta>，这是由 antd 提供的 */}
+        在 <Card> 组件内部写入一个子组件 <Card.Meta></Card.Meta>，这是由 antd 提供的 
             <Card.Meta
                 avatar={<img
                     alt=""    
@@ -23,4 +23,14 @@ export default () => {
             />
         </Card>
     )
-}
+} */
+
+import styles from './styles.less';
+
+export default () => {
+  return (
+    <div className={styles.hello}>
+      <span className={styles.deleted}>Hello World</span>
+    </div>
+  );
+};
