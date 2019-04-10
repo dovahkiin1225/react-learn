@@ -1,4 +1,4 @@
-.vscode/settings.json
+.vscode
 node_modules
 antd-course/src/page/.umi/
 antd-course/dist/
